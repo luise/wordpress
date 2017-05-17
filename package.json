@@ -1,3 +1,13 @@
 {
-    "main": "./wordpress.js"
+  "name": "@quilt/wordpress",
+  "version": "0.0.1",
+  "main": "./wordpress.js",
+  "license": "MIT",
+  "dependencies": {
+    "@quilt/quilt": "quilt/quilt",
+    "@quilt/memcached": "quilt/memcached",
+    "@quilt/mysql": "quilt/mysql",
+    "@quilt/haproxy": "quilt/haproxy",
+    "@quilt/spark": "quilt/spark"
+  }
 }

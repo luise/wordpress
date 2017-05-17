@@ -1,3 +1,4 @@
+const {Service, Container} = require("@quilt/quilt");
 var image = "quilt/wordpress";
 
 function Wordpress(n, db, memcd) {

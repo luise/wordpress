@@ -1,8 +1,9 @@
-var wordpress = require("github.com/quilt/wordpress");
-var memcached = require("github.com/quilt/memcached");
-var mysql = require("github.com/quilt/mysql");
-var haproxy = require("github.com/quilt/haproxy");
-var spark = require("github.com/quilt/spark");
+const {Machine, createDeployment, githubKeys} = require("@quilt/quilt");
+var wordpress = require("./wordpress.js");
+var memcached = require("@quilt/memcached");
+var mysql = require("@quilt/mysql");
+var haproxy = require("@quilt/haproxy");
+var spark = require("@quilt/spark");
 
 var memcd = new memcached.Memcached(3);
 var db = new mysql.Mysql(2);
