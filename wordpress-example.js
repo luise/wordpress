@@ -1,18 +1,19 @@
-const {Machine, createDeployment, githubKeys} = require("@quilt/quilt");
+const {Machine, createDeployment, githubKeys, publicInternet}
+  = require("@quilt/quilt");
 var wordpress = require("./wordpress.js");
 var memcached = require("@quilt/memcached");
 var mysql = require("@quilt/mysql");
-var HaProxy = require("@quilt/haproxy");
+var haproxy = require("@quilt/haproxy");
 var spark = require("@quilt/spark");
 
 var memcd = new memcached.Memcached(3);
 var db = new mysql.Mysql(2);
 var sprk = new spark.Spark(1, 4); // 1 Master, 4 Workers
 var wp = new wordpress.Wordpress(4, db, memcd);
-var hap = new HaProxy(2, wp.wp);
+var hap = haproxy.singleServiceLoadBalancer(2, wp.wp);
 
 sprk.workers.connect(7077, db.master);
-hap.public();
+hap.allowFrom(publicInternet, haproxy.exposedPort);
 
 // Infrastructure
 var deployment = createDeployment({});
