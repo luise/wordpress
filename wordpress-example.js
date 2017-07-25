@@ -9,7 +9,7 @@ var memcd = new memcached.Memcached(3);
 var db = new mysql.Mysql(2);
 var sprk = new spark.Spark(1, 4); // 1 Master, 4 Workers
 var wp = new wordpress.Wordpress(4, db, memcd);
-var hap = new Haproxy(2, wp.wp);
+var hap = new HaProxy(2, wp.wp);
 
 sprk.workers.connect(7077, db.master);
 hap.public();
